@@ -18,11 +18,11 @@ function play() {
 
   document.addEventListener("click", (event) => {
     target = event.target;
-
-    if (target.classList.contains("grid-item") && active == 1) {
-      turn.innerHTML = "Turn of: " + turns[i-1];
-      x = target.id.toString().slice(0, 1);
-      y = target.id.toString().slice(2, 3);
+    y = target.id.toString().slice(2, 3);
+    x = target.id.toString().slice(0, 1);
+    if (table[x][y] == '.'){
+    if (target.classList.contains("grid-item") && active == 1 ) {
+      turn.innerHTML = "Turn of: " + turns[i - 1];
       table[x][y] = turns[i];
       if (checkWinner(table) == "0") {
         active = 0;
@@ -33,13 +33,13 @@ function play() {
       if (checkWinner(table) != null && checkWinner(table) != "0") {
         active = 0;
         turn.innerHTML = `Player ${checkWinner(table)} Wins!`;
-      }
-      console.log(table);
+      }}
+      return
     }
+    if (i >= 9) turn.innerHTML = "Draw!"
   });
 }
 function checkWinner(table) {
-  // Проверяем горизонтали и вертикали
   for (let i = 0; i < 3; i++) {
     if (
       table[i][0] !== "." &&
@@ -83,3 +83,5 @@ function checkWinner(table) {
 }
 
 play();
+
+
